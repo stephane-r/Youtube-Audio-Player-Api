@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  strapi:
+    build: ./config/docker
+    container_name: strapi_api
+    environment:
+      - LOCAL_USER_ID=$USER_ID
+      - LOCAL_GROUP_ID=$GROUP_ID
+    ports:
+      - 1337:1337
+    volumes:
+      - .:/app
