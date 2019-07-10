@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  strapi:
+    environment:
+      - NODE_ENV=production
+      - LOCAL_USER_ID=$USER_ID
+      - LOCAL_GROUP_ID=$GROUP_ID
+      - PGID=1000
+      - PUID=1000
+      - TZ=Europe/London
+      - VIRTUAL_HOST=api.${SITE_URL}
+      - VIRTUAL_PORT=1337
+      - LETSENCRYPT_HOST=api.${SITE_URL}
+      - LETSENCRYPT_EMAIL=${MAILER_DEFAUT_SENDER_ADDRESS}
+
+  youtube_audio:
+    build: ./config/docker/youtube-audio
+    container_name: youtube_audio
+    environment:
+      - PGID=1000
+      - PUID=1000
+      - TZ=Europe/London
+      - VIRTUAL_HOST=audio.${SITE_URL}
+      - VIRTUAL_PORT=8080
+      - LETSENCRYPT_HOST=audio.${SITE_URL}
+      - LETSENCRYPT_EMAIL=${MAILER_DEFAUT_SENDER_ADDRESS}
+      - KEY=${YOUTUBE_KEY_API}
+    ports:
+      - ${APP_YOUTUBE_PORT}:80
