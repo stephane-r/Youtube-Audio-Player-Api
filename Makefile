@@ -20,7 +20,7 @@ help: ## Display this help
 ##########
 docker-up:
 	@echo "--> Start docker services"
-	$(DOCKERCOMPO) -f docker-compose.production.yml run --rm --service-ports strapi yarn start
+	$(DOCKERCOMPO) -f docker-compose.production.yml run --rm --service-ports strapi yarn build:start
 docker-down:
 	@echo "--> Stop docker services"
 	$(DOCKERCOMPO) down
