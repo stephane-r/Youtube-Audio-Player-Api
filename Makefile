@@ -3,9 +3,10 @@ export USER_ID=`id -u`
 export GROUP_ID=`id -g`
 
 DOCKERCOMPO = USER_ID=${USER_ID} GROUP_ID=$(GROUP_ID) docker-compose
+DOCKERCOMPORUN = $(DOCKERCOMPO) run --rm strapi
 DOCKERRUN = $(DOCKERCOMPO) run -d --rm --service-ports strapi
-DOCKERNPM = $(DOCKERRUN) npm
-DOCKERYARN = $(DOCKERRUN) yarn
+DOCKERNPM = $(DOCKERCOMPORUN) npm
+DOCKERYARN = $(DOCKERCOMPORUN) yarn
 
 # Help
 .SILENT:
@@ -24,6 +25,15 @@ docker-down:
 ########
 # Yarn #
 ########
+yarn-install:
+	@echo "--> Install dependencies"
+	$(DOCKERYARN)
 yarn-develop:
-	@echo "--> Start docker services"
+	@echo "--> Start develop strapi"
 	$(DOCKERYARN) develop
+yarn-start:
+	@echo "--> Start strapi"
+	$(DOCKERYARN) start
+yarn-build:
+	@echo "--> Build strapi"
+	$(DOCKERYARN) build
