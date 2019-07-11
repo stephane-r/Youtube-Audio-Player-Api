@@ -1,0 +1,29 @@
+{
+  "connection": "default",
+  "collectionName": "Playlist",
+  "info": {
+    "name": "playlist",
+    "description": "All playlist created by users"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": [
+      "created_at",
+      "updated_at"
+    ],
+    "comment": ""
+  },
+  "attributes": {
+    "name": {
+      "default": "Name",
+      "required": true,
+      "type": "string"
+    },
+    "createdAt": {
+      "type": "date"
+    },
+    "updatedAt": {
+      "type": "date"
+    }
+  }
+}
