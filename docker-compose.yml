@@ -2,7 +2,7 @@ version: "3"
 
 services:
   strapi:
-    build: ./config/docker
+    build: ./config/docker/strapi
     container_name: strapi_api
     environment:
       - LOCAL_USER_ID=$USER_ID
