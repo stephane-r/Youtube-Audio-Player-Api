@@ -6,6 +6,15 @@ services:
     container_name: strapi_api
     environment:
       - NODE_ENV=production
+      - APP_NAME=strapi-app
+      - DATABASE_CLIENT=${DATABASE_CLIENT}
+      - DATABASE_HOST=${DATABASE_HOST}
+      - DATABASE_PORT=${DATABASE_PORT}
+      - DATABASE_NAME=${DATABASE_NAME}
+      - DATABASE_USERNAME=${DATABASE_USERNAME}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_SSL=${DATABASE_SSL}
+      - DATABASE_AUTHENTICATION_DATABASE=${DATABASE_AUTHENTICATION_DATABASE}
       - LOCAL_USER_ID=$USER_ID
       - LOCAL_GROUP_ID=$GROUP_ID
       - PGID=1000
@@ -17,18 +26,32 @@ services:
       - LETSENCRYPT_EMAIL=${MAILER_DEFAUT_SENDER_ADDRESS}
     volumes:
       - .:/app
+    ports:
+      - 1337:1337
+    depends_on:
+      - db
 
-  #youtube_audio:
-    #build: ./config/docker/youtube-audio
-    #container_name: youtube_audio
-    #environment:
-      #- PGID=1000
-      #- PUID=1000
-      #- TZ=Europe/London
-      #- VIRTUAL_HOST=audio.${SITE_URL}
-      #- VIRTUAL_PORT=8080
-      #- LETSENCRYPT_HOST=audio.${SITE_URL}
-      #- LETSENCRYPT_EMAIL=${MAILER_DEFAUT_SENDER_ADDRESS}
-      #- KEY=${YOUTUBE_KEY_API}
-    #ports:
-      #- ${APP_YOUTUBE_PORT}:80
+  db:
+    image: mongo
+    container_name: strapi_db
+    environment:
+      - MONGO_INITDB_DATABASE=strapi
+    ports:
+      - 27017:27017
+    volumes:
+      - ./db:/data/db
+    restart: always
+  # youtube_audio:
+  #   build: ./config/docker/youtube-audio
+  #   container_name: youtube_audio
+  #   environment:
+  #     - PGID=1000
+  #     - PUID=1000
+  #     - TZ=Europe/London
+  #     - VIRTUAL_HOST=audio.${SITE_URL}
+  #     - VIRTUAL_PORT=8080
+  #     - LETSENCRYPT_HOST=audio.${SITE_URL}
+  #     - LETSENCRYPT_EMAIL=${MAILER_DEFAUT_SENDER_ADDRESS}
+  #     - KEY=${YOUTUBE_KEY_API}
+  #   ports:
+  #     - ${APP_YOUTUBE_PORT}:80
