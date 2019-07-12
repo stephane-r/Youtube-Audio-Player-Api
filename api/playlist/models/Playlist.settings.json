@@ -19,11 +19,13 @@
       "required": true,
       "type": "string"
     },
-    "createdAt": {
-      "type": "date"
+    "userIds": {
+      "collection": "user",
+      "via": "playlist",
+      "plugin": "users-permissions"
     },
-    "updatedAt": {
-      "type": "date"
+    "sources": {
+      "type": "json"
     }
   }
 }

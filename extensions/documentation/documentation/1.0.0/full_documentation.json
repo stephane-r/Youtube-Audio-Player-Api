@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "07/11/2019 5:04:25 PM"
+    "x-generation-date": "07/12/2019 2:06:40 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -2631,11 +2631,50 @@
             "type": "string",
             "default": "Name"
           },
-          "createdAt": {
-            "type": "string"
+          "userIds": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "username",
+                "email"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "username": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "provider": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "resetPasswordToken": {
+                  "type": "string"
+                },
+                "confirmed": {
+                  "type": "boolean"
+                },
+                "blocked": {
+                  "type": "boolean"
+                },
+                "role": {
+                  "type": "string"
+                },
+                "playlist": {
+                  "type": "string"
+                }
+              }
+            }
           },
-          "updatedAt": {
-            "type": "string"
+          "sources": {
+            "type": "json"
           }
         }
       },
@@ -2648,11 +2687,14 @@
             "type": "string",
             "default": "Name"
           },
-          "createdAt": {
-            "type": "string"
+          "userIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
-          "updatedAt": {
-            "type": "string"
+          "sources": {
+            "type": "json"
           }
         }
       },
@@ -2744,6 +2786,9 @@
                   "type": "boolean"
                 },
                 "role": {
+                  "type": "string"
+                },
+                "playlist": {
                   "type": "string"
                 }
               }
@@ -2840,6 +2885,29 @@
                 }
               }
             }
+          },
+          "playlist": {
+            "required": [
+              "id",
+              "name"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "userIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "sources": {
+                "type": "json"
+              }
+            }
           }
         }
       },
@@ -2876,6 +2944,9 @@
             "default": false
           },
           "role": {
+            "type": "string"
+          },
+          "playlist": {
             "type": "string"
           }
         }

@@ -1161,6 +1161,29 @@
                 }
               }
             }
+          },
+          "playlist": {
+            "required": [
+              "id",
+              "name"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "userIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "sources": {
+                "type": "json"
+              }
+            }
           }
         }
       },
@@ -1197,6 +1220,9 @@
             "default": false
           },
           "role": {
+            "type": "string"
+          },
+          "playlist": {
             "type": "string"
           }
         }
