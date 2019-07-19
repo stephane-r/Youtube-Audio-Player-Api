@@ -603,8 +603,17 @@
                 "role": {
                   "type": "string"
                 },
-                "playlist": {
-                  "type": "string"
+                "playlists": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "favorisIds": {
+                  "type": "json"
+                },
+                "favoris": {
+                  "type": "json"
                 }
               }
             }

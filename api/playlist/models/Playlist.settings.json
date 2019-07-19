@@ -19,13 +19,14 @@
       "required": true,
       "type": "string"
     },
-    "userIds": {
-      "collection": "user",
-      "via": "playlist",
-      "plugin": "users-permissions"
-    },
     "sources": {
       "type": "json"
+    },
+    "users": {
+      "collection": "user",
+      "dominant": true,
+      "via": "playlists",
+      "plugin": "users-permissions"
     }
   }
 }

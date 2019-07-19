@@ -521,7 +521,10 @@
             "type": "string",
             "default": "Name"
           },
-          "userIds": {
+          "sources": {
+            "type": "json"
+          },
+          "users": {
             "type": "array",
             "items": {
               "required": [
@@ -557,14 +560,20 @@
                 "role": {
                   "type": "string"
                 },
-                "playlist": {
-                  "type": "string"
+                "playlists": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "favorisIds": {
+                  "type": "json"
+                },
+                "favoris": {
+                  "type": "json"
                 }
               }
             }
-          },
-          "sources": {
-            "type": "json"
           }
         }
       },
@@ -577,14 +586,14 @@
             "type": "string",
             "default": "Name"
           },
-          "userIds": {
+          "sources": {
+            "type": "json"
+          },
+          "users": {
             "type": "array",
             "items": {
               "type": "string"
             }
-          },
-          "sources": {
-            "type": "json"
           }
         }
       }

@@ -1162,28 +1162,37 @@
               }
             }
           },
-          "playlist": {
-            "required": [
-              "id",
-              "name"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "userIds": {
-                "type": "array",
-                "items": {
+          "playlists": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "name"
+              ],
+              "properties": {
+                "id": {
                   "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "sources": {
+                  "type": "json"
+                },
+                "users": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 }
-              },
-              "sources": {
-                "type": "json"
               }
             }
+          },
+          "favorisIds": {
+            "type": "json"
+          },
+          "favoris": {
+            "type": "json"
           }
         }
       },
@@ -1222,8 +1231,17 @@
           "role": {
             "type": "string"
           },
-          "playlist": {
-            "type": "string"
+          "playlists": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "favorisIds": {
+            "type": "json"
+          },
+          "favoris": {
+            "type": "json"
           }
         }
       }
