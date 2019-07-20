@@ -22,6 +22,22 @@ type createUserPayload {
   user: UsersPermissionsUser
 }
 
+type CustomUsersPermissionsMe {
+  id: ID!
+  username: String!
+  email: String!
+  confirmed: Boolean
+  blocked: Boolean
+  role: CustomUsersPermissionsMeRole
+}
+
+type CustomUsersPermissionsMeRole {
+  id: ID!
+  name: String!
+  description: String
+  type: String
+}
+
 """
 The `DateTime` scalar represents a date and time following the ISO 8601 standard
 """
@@ -114,7 +130,7 @@ scalar JSON
 """The `Long` scalar type represents 52-bit integers"""
 scalar Long
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | Playlist | createPlaylistPayload | updatePlaylistPayload | deletePlaylistPayload | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | CustomUsersPermissionsMe | CustomUsersPermissionsMeRole | Playlist | createPlaylistPayload | updatePlaylistPayload | deletePlaylistPayload | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload
 
 type Mutation {
   createPlaylist(input: createPlaylistInput): createPlaylistPayload
@@ -170,6 +186,7 @@ type Query {
   user(id: ID!): UsersPermissionsUser
   users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
   me: UsersPermissionsMe
+  userMe: CustomUsersPermissionsMe
 }
 
 input RoleInput {

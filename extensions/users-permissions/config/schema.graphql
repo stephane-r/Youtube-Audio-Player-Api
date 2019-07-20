@@ -1,0 +1,35 @@
+const _ = require('lodash');
+
+module.exports = {
+  definition: `
+    type CustomUsersPermissionsMe {
+      id: ID!
+      username: String!
+      email: String!
+      confirmed: Boolean
+      blocked: Boolean
+      role: CustomUsersPermissionsMeRole
+    }
+
+    type CustomUsersPermissionsMeRole {
+      id: ID!
+      name: String!
+      description: String
+      type: String
+    }
+  `,
+  query: `
+    userMe: CustomUsersPermissionsMe
+  `,
+  resolver: {
+    Query: {
+      userMe: {
+        resolverOf: 'User.me',
+        resolver: {
+          plugin: 'users-permissions',
+          handler: 'User.me'
+        }
+      }
+    }
+  }
+};
