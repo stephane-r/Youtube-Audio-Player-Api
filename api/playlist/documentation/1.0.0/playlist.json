@@ -560,20 +560,23 @@
                 "role": {
                   "type": "string"
                 },
-                "playlists": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
                 "favorisIds": {
                   "type": "json"
                 },
                 "favoris": {
                   "type": "json"
+                },
+                "playlists": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 }
               }
             }
+          },
+          "deleted": {
+            "type": "boolean"
           }
         }
       },
@@ -594,6 +597,9 @@
             "items": {
               "type": "string"
             }
+          },
+          "deleted": {
+            "type": "boolean"
           }
         }
       }

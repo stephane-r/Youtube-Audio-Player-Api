@@ -24,9 +24,12 @@
     },
     "users": {
       "collection": "user",
-      "dominant": true,
       "via": "playlists",
+      "dominant": true,
       "plugin": "users-permissions"
+    },
+    "deleted": {
+      "type": "boolean"
     }
   }
 }

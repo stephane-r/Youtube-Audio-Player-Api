@@ -56,15 +56,15 @@
       "plugin": "users-permissions",
       "configurable": false
     },
-    "playlists": {
-      "collection": "playlist",
-      "via": "users"
-    },
     "favorisIds": {
       "type": "json"
     },
     "favoris": {
       "type": "json"
+    },
+    "playlists": {
+      "collection": "playlist",
+      "via": "users"
     }
   }
 }

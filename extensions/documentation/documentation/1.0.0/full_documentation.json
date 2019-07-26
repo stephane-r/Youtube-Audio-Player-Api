@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "07/18/2019 3:45:48 PM"
+    "x-generation-date": "07/24/2019 1:19:39 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -2670,20 +2670,23 @@
                 "role": {
                   "type": "string"
                 },
-                "playlists": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
                 "favorisIds": {
                   "type": "json"
                 },
                 "favoris": {
                   "type": "json"
+                },
+                "playlists": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 }
               }
             }
+          },
+          "deleted": {
+            "type": "boolean"
           }
         }
       },
@@ -2704,6 +2707,9 @@
             "items": {
               "type": "string"
             }
+          },
+          "deleted": {
+            "type": "boolean"
           }
         }
       },
@@ -2797,17 +2803,17 @@
                 "role": {
                   "type": "string"
                 },
-                "playlists": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
                 "favorisIds": {
                   "type": "json"
                 },
                 "favoris": {
                   "type": "json"
+                },
+                "playlists": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -2904,6 +2910,12 @@
               }
             }
           },
+          "favorisIds": {
+            "type": "json"
+          },
+          "favoris": {
+            "type": "json"
+          },
           "playlists": {
             "type": "array",
             "items": {
@@ -2926,15 +2938,12 @@
                   "items": {
                     "type": "string"
                   }
+                },
+                "deleted": {
+                  "type": "boolean"
                 }
               }
             }
-          },
-          "favorisIds": {
-            "type": "json"
-          },
-          "favoris": {
-            "type": "json"
           }
         }
       },
@@ -2973,17 +2982,17 @@
           "role": {
             "type": "string"
           },
-          "playlists": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
           "favorisIds": {
             "type": "json"
           },
           "favoris": {
             "type": "json"
+          },
+          "playlists": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },

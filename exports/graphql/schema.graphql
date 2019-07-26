@@ -84,6 +84,7 @@ input editPlaylistInput {
   name: String
   sources: JSON
   users: [ID]
+  deleted: Boolean
 }
 
 input editRoleInput {
@@ -103,9 +104,9 @@ input editUserInput {
   confirmed: Boolean
   blocked: Boolean
   role: ID
-  playlists: [ID]
   favorisIds: JSON
   favoris: JSON
+  playlists: [ID]
 }
 
 input FileInput {
@@ -164,6 +165,7 @@ type Playlist {
   updated_at: DateTime!
   name: String!
   sources: JSON
+  deleted: Boolean
   users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
 }
 
@@ -171,6 +173,7 @@ input PlaylistInput {
   name: String!
   sources: JSON
   users: [ID]
+  deleted: Boolean
 }
 
 type Query {
@@ -252,9 +255,9 @@ input UserInput {
   confirmed: Boolean
   blocked: Boolean
   role: ID
-  playlists: [ID]
   favorisIds: JSON
   favoris: JSON
+  playlists: [ID]
 }
 
 type UsersPermissionsMe {
