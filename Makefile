@@ -27,6 +27,10 @@ docker-up:
 docker-down:
 	@echo "--> Stop docker services"
 	$(DOCKERCOMPO) down
+docker-restart:
+	@echo "--> Restart docker services"
+	make docker-down
+	make docker-up
 
 ########
 # Yarn #

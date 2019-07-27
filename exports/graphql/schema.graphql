@@ -1,3 +1,11 @@
+input createPlaylistInput {
+  data: PlaylistInput
+}
+
+type createPlaylistPayload {
+  playlist: Playlist
+}
+
 input createRoleInput {
   data: RoleInput
 }
@@ -14,10 +22,34 @@ type createUserPayload {
   user: UsersPermissionsUser
 }
 
+type CustomUsersPermissionsMe {
+  id: ID!
+  username: String!
+  email: String!
+  confirmed: Boolean
+  blocked: Boolean
+  role: CustomUsersPermissionsMeRole
+}
+
+type CustomUsersPermissionsMeRole {
+  id: ID!
+  name: String!
+  description: String
+  type: String
+}
+
 """
 The `DateTime` scalar represents a date and time following the ISO 8601 standard
 """
 scalar DateTime
+
+input deletePlaylistInput {
+  where: InputID
+}
+
+type deletePlaylistPayload {
+  playlist: Playlist
+}
 
 input deleteRoleInput {
   where: InputID
@@ -48,6 +80,13 @@ input editFileInput {
   related: [ID]
 }
 
+input editPlaylistInput {
+  name: String
+  sources: JSON
+  users: [ID]
+  deleted: Boolean
+}
+
 input editRoleInput {
   name: String
   description: String
@@ -65,6 +104,9 @@ input editUserInput {
   confirmed: Boolean
   blocked: Boolean
   role: ID
+  favorisIds: JSON
+  favoris: JSON
+  playlists: [ID]
 }
 
 input FileInput {
@@ -89,9 +131,13 @@ scalar JSON
 """The `Long` scalar type represents 52-bit integers"""
 scalar Long
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | CustomUsersPermissionsMe | CustomUsersPermissionsMeRole | Playlist | createPlaylistPayload | updatePlaylistPayload | deletePlaylistPayload | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload
 
 type Mutation {
+  createPlaylist(input: createPlaylistInput): createPlaylistPayload
+  updatePlaylist(input: updatePlaylistInput): updatePlaylistPayload
+  deletePlaylist(input: deletePlaylistInput): deletePlaylistPayload
+
   """Create a new role"""
   createRole(input: createRoleInput): createRolePayload
 
@@ -112,7 +158,27 @@ type Mutation {
   upload(refId: ID, ref: String, source: String, file: Upload!): UploadFile!
 }
 
+"""All playlist created by users"""
+type Playlist {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String!
+  sources: JSON
+  deleted: Boolean
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+}
+
+input PlaylistInput {
+  name: String!
+  sources: JSON
+  users: [ID]
+  deleted: Boolean
+}
+
 type Query {
+  playlist(id: ID!): Playlist
+  playlists(sort: String, limit: Int, start: Int, where: JSON): [Playlist]
   files(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
   role(id: ID!): UsersPermissionsRole
 
@@ -123,6 +189,7 @@ type Query {
   user(id: ID!): UsersPermissionsUser
   users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
   me: UsersPermissionsMe
+  userMe: CustomUsersPermissionsMe
 }
 
 input RoleInput {
@@ -131,6 +198,15 @@ input RoleInput {
   type: String
   permissions: [ID]
   users: [ID]
+}
+
+input updatePlaylistInput {
+  where: InputID
+  data: editPlaylistInput
+}
+
+type updatePlaylistPayload {
+  playlist: Playlist
 }
 
 input updateRoleInput {
@@ -179,6 +255,9 @@ input UserInput {
   confirmed: Boolean
   blocked: Boolean
   role: ID
+  favorisIds: JSON
+  favoris: JSON
+  playlists: [ID]
 }
 
 type UsersPermissionsMe {
@@ -226,4 +305,7 @@ type UsersPermissionsUser {
   confirmed: Boolean
   blocked: Boolean
   role: UsersPermissionsRole
+  favorisIds: JSON
+  favoris: JSON
+  playlists(sort: String, limit: Int, start: Int, where: JSON): [Playlist]
 }

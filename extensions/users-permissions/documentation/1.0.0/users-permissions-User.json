@@ -1161,6 +1161,41 @@
                 }
               }
             }
+          },
+          "favorisIds": {
+            "type": "json"
+          },
+          "favoris": {
+            "type": "json"
+          },
+          "playlists": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "name"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "sources": {
+                  "type": "json"
+                },
+                "users": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "deleted": {
+                  "type": "boolean"
+                }
+              }
+            }
           }
         }
       },
@@ -1198,6 +1233,18 @@
           },
           "role": {
             "type": "string"
+          },
+          "favorisIds": {
+            "type": "json"
+          },
+          "favoris": {
+            "type": "json"
+          },
+          "playlists": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       }
