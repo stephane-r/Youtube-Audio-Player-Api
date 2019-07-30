@@ -5,7 +5,6 @@ export GROUP_ID=`id -g`
 DOCKERCOMPO = USER_ID=${USER_ID} GROUP_ID=$(GROUP_ID) docker-compose
 DOCKERCOMPOPROD = $(DOCKERCOMPO) -f docker-compose.production.yml run -d --rm --service-ports
 DOCKERSTRAPI = $(DOCKERCOMPOPROD) strapi
-DOCKERYAS = $(DOCKERCOMPOPROD) youtube_audio
 DOCKERCOMPORUN = $(DOCKERCOMPO) run --rm --service-ports strapi
 DOCKERNPM = $(DOCKERCOMPORUN) npm
 DOCKERYARN = $(DOCKERCOMPORUN) yarn
@@ -23,7 +22,6 @@ help: ## Display this help
 docker-up:
 	@echo "--> Start docker services"
 	$(DOCKERSTRAPI) yarn build:start
-	$(DOCKERYAS) yas
 docker-down:
 	@echo "--> Stop docker services"
 	$(DOCKERCOMPO) down
